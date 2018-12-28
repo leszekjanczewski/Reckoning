@@ -10,72 +10,81 @@
 
     <packaging>war</packaging>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <orgHibernateVersion>5.3.7.Final</orgHibernateVersion>
+        <orgHibernateValidatorVersion>6.0.13.Final</orgHibernateValidatorVersion>
+        <orgSpringFrameworkVersion>5.1.3.RELEASE</orgSpringFrameworkVersion>
+        <orgSpringFrameworkDataVersion>2.1.3.RELEASE</orgSpringFrameworkDataVersion>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.3.7.Final</version>
+            <version>${orgHibernateVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.3.7.Final</version>
+            <version>${orgHibernateVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.0.13.Final</version>
+            <version>${orgHibernateValidatorVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator-annotation-processor</artifactId>
-            <version>6.0.13.Final</version>
+            <version>${orgHibernateValidatorVersion}</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>5.1.3.RELEASE</version>
+            <version>${orgSpringFrameworkVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>5.1.3.RELEASE</version>
+            <version>${orgSpringFrameworkVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>5.1.3.RELEASE</version>
+            <version>${orgSpringFrameworkVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.1.3.RELEASE</version>
+            <version>${orgSpringFrameworkVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>5.1.3.RELEASE</version>
+            <version>${orgSpringFrameworkVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>2.1.3.RELEASE</version>
+            <version>${orgSpringFrameworkDataVersion}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>2.1.3.RELEASE</version>
+            <version>${orgSpringFrameworkDataVersion}</version>
         </dependency>
 
         <dependency>
