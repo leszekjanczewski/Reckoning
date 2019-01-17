@@ -1,21 +1,15 @@
 package pl.leszekjanczewski.reckoning.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.security.Principal;
 
 @Controller
-public class HomeController {
+class HomeController {
 
-    @GetMapping("/")
-    @ResponseBody
-    public String home() {
-        return "home";
+    @GetMapping("/test")
+    String index(Principal principal) {
+        return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
     }
-
-    @GetMapping("/admin")
-    @ResponseBody
-    public String admin() {return "admin";}
 }

@@ -1,14 +1,22 @@
 package pl.leszekjanczewski.reckoning.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
-@Entity(name = "users")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -17,29 +25,31 @@ public class User {
     private Long userId;
 
     @Column(name = "first_name")
-    @NotNull
+    @NotEmpty(message = "*Proszę wprowadzić imię")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotNull
+    @NotEmpty(message = "*Proszę wprowadzić nazwisko")
     private String lastName;
 
     @Column(name = "enable")
-    @NotNull
     private boolean enable;
 
     @Column(name = "email")
-    @NotNull
+    @Email(message = "Proszę wprowadzić prawidłowy adres e-mail")
+    @NotEmpty(message = "Proszę wprowadzić adress e-mail")
     private String email;
 
     @Column(name = "login", unique = true)
-    @NotNull
+    @NotEmpty(message = "*Proszę wprowadzić login")
     private String login;
 
     @Column(name = "password")
-    @NotNull
+    @Length(min = 5, message = "*Hasło musi mieć co najmniej 5 znaków")
+    @NotEmpty(message = "*Hasło nie może być puste")
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Role> roles = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }

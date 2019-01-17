@@ -1,12 +1,19 @@
 package pl.leszekjanczewski.reckoning.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
-@Entity(name = "roles")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +21,6 @@ public class Role {
     private Long roleId;
 
     @Column(name = "role", unique = true)
-    @NotNull
+    @NotEmpty(message = "*Wprowadź rolę")
     private String role;
 }
