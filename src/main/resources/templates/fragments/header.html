@@ -26,19 +26,19 @@
                 <!--<a href="#" th:href="@{/task-ld}">Tasks (Layout Dialect)</a>-->
                 <!--</li>-->
             </ul>
-            <!--<ul class="nav navbar-nav navbar-right">-->
-            <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
-            <!--<a href="/login" th:href="@{/login}">-->
-            <!--<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Zaloguj się-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li th:if="${#authorization.expression('isAuthenticated()')}">-->
-            <!--<a href="/logout" th:href="@{#}" onclick="$('#form').submit();">-->
-            <!--<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Wyloguj się-->
-            <!--</a>-->
-            <!--<form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>-->
-            <!--</li>-->
-            <!--</ul>-->
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
+                <!--<a href="/login" th:href="@{/login}">-->
+                <!--<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Zaloguj się-->
+                <!--</a>-->
+                <!--</li>-->
+                <!--<li th:if="${#authorization.expression('isAuthenticated()')}">-->
+                <!--<a href="/logout" th:href="@{#}" onclick="$('#form').submit();">-->
+                <!--<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Wyloguj się-->
+                <!--</a>-->
+                <!--<form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>-->
+                <!--</li>-->
+            </ul>
         </div>
         <!--/.nav-collapse -->
     </div>
