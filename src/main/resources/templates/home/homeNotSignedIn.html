@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Reckoning</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
-    <link href="/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
-    <script src="/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
-    <script src="/resources/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <link href="../css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}">
 </head>
+
 <body>
-<div th:replace="~{fragments/header :: header}">Header</div>
-<div class="container">
+<div th:insert="~{fragments/header :: header}">Header</div>
+
+<div class="container" th:fragment="contentNotSigned">
     <div class="hero-unit">
-        <h1>Podaj e-mail lub numer telefonu aby wyszukać informacje</h1>
-        <p>
+        <h1 class="h1">Podaj e-mail lub numer telefonu aby wyszukać informacje</h1>
         <div class="input-group input-group-lg">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-lg">E-mail lub telefon</span>
@@ -21,13 +23,15 @@
             <input type="text" class="form-control" placeholder="przyklad@domena.pl lub 601203405"
                    aria-label="Search Text" aria-describedby="basic-addon1">
         </div>
-        </p>
         <p>
             <a href="/login" th:href="@{/login}" class="btn btn-large btn-success">Zaloguj się</a>
         </p>
     </div>
-    <div th:insert="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 </div>
-...
+
+<div th:insert="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 </body>
 </html>

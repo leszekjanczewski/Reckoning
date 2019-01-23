@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="#{view.index.title}">Welcome!</title>
+    <title>Reckoning - zalogowany</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <!--<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen"-->
-          <!--th:href="@{/css/bootstrap.min.css}"/>-->
-    <!--<link href="/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>-->
-    <!--<script src="/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>-->
-    <!--<script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>-->
+    <link href="/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header">&nbsp;</div>
-<div class="container">
+<div th:replace="fragments/header :: header">...</div>
+
+<div class="container" th:fragment="contentSigned">
     <!-- /* Handle the flash message */-->
     <th:block th:if="${message != null}">
         <!-- /* The message code is returned from the @Controller */ -->
         <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">
-            &nbsp;
         </div>
     </th:block>
     <p>
         Welcome to the Spring MVC Quickstart application!
     </p>
 </div>
+
+<div th:insert="~{fragments/footer :: footer-admin}">&copy; 2017 The Static Templates</div>
+<!--<script src="/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>-->
+<!--<script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>-->
 </body>
 </html>

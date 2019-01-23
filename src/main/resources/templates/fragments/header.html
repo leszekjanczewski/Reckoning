@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
 </head>
+
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
     <div class="container">
@@ -27,21 +28,22 @@
                 <!--</li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
-                <!--<a href="/login" th:href="@{/login}">-->
-                <!--<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Zaloguj się-->
-                <!--</a>-->
-                <!--</li>-->
-                <!--<li th:if="${#authorization.expression('isAuthenticated()')}">-->
-                <!--<a href="/logout" th:href="@{#}" onclick="$('#form').submit();">-->
-                <!--<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Wyloguj się-->
-                <!--</a>-->
-                <!--<form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>-->
-                <!--</li>-->
+                <li th:if="${('!isAuthenticated()')}">
+                    <a href="/login" th:href="@{/login}">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Zaloguj się
+                    </a>
+                </li>
+                <li th:if="${('isAuthenticated()')}">
+                    <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Wyloguj się
+                    </a>
+                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                </li>
             </ul>
         </div>
         <!--/.nav-collapse -->
     </div>
 </nav>
+
 </body>
 </html>
