@@ -28,6 +28,9 @@ public class Client {
     @NotEmpty(message = "*Proszę wprowadzić nazwisko")
     private String lastName;
 
+    @Column(name = "gender")
+    private char gender;
+
     @Column(name = "active")
     private boolean active;
 

@@ -29,6 +29,12 @@ public class Child {
     @NotEmpty(message = "*Proszę wprowadzić nazwisko")
     private String lastName;
 
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "gender")
+    private char gender;
+
     @Column(name = "active")
     private boolean active;
 

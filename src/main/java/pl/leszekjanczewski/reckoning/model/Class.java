@@ -3,9 +3,11 @@ package pl.leszekjanczewski.reckoning.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,16 +25,21 @@ public class Class {
     private Long classId;
 
     @Column(name = "class_name")
-    @NotEmpty(message = "Podaj nazwę klasy")
     private String className;
+
+   @ManyToOne
+   @JoinColumn(name = "type_id")
+    private TypeOfClass typeOfClass;
 
     @Column(name = "day_of_week")
     @NotEmpty(message = "Wybierz dzień zajęć")
     private String dayOfWeek;
 
-    @Column(name = "hour")
+    @DateTimeFormat(pattern = "hh:mm")
+    @Temporal(TemporalType.TIME)
+    @Column(name = "start_hour")
     @NotEmpty(message = "Podaj godzinę zajęć")
-    private Date hour;
+    private Date startHour;
 
     @Column(name = "duration")
     @NotEmpty(message = "Podaj czas trwania zajęć")
