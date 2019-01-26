@@ -11,11 +11,11 @@
 </head>
 
 <body>
-<div th:insert="~{fragments/header :: header}">Header</div>
+<div th:replace="~{fragments/header :: header}">Header</div>
 
 <div class="container" th:fragment="contentNotSigned">
     <div class="hero-unit">
-        <h1 class="h1">Podaj e-mail lub numer telefonu aby wyszukać informacje</h1>
+        <h1 class="h4">Podaj e-mail lub numer telefonu aby wyszukać informacje</h1>
         <div class="input-group input-group-lg">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-lg">E-mail lub telefon</span>

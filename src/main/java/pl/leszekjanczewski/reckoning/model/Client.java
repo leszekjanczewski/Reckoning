@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -51,4 +53,12 @@ public class Client {
 
     @Column(name = "post_code")
     private String postCode;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "clients_payments", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "paymant_id"))
+    private Set<Payment> payments = new HashSet<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "clients_installments", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "installment_id"))
+    private Set<Installment> installments = new HashSet<>();
 }

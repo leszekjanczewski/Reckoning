@@ -47,4 +47,16 @@ public class Class {
 
     @ManyToMany(mappedBy = "classes")
     private Set<Child> children = new HashSet<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "classes_calendars", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "calendar_id"))
+    private Set<Calendar> calendars = new HashSet<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "classes_payments", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "payment_id"))
+    private Set<Payment> payments = new HashSet<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "classes_installments", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "installment_id"))
+    private Set<Installment> installments = new HashSet<>();
 }
