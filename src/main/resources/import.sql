@@ -1,5 +1,5 @@
+INSERT INTO users (email, enable, first_name, last_name, login, password) VALUES ('admin@admin', true, 'admin', 'admin', 'admin', '$2a$10$PABIIGOFqtzC8A3eBcYaauQrsxaJlzTJdDKjWZUhD5GgduwfNvwW6');
 INSERT INTO roles (role) VALUES ('ADMIN');
-
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
 
 -- CLIENTS
@@ -14,16 +14,55 @@ INSERT INTO types_of_classes (type_name) VALUES ('Minecraft: Programowanie dla z
 INSERT INTO types_of_classes (type_name) VALUES ('Elektronika: Dla początkujących');
 INSERT INTO types_of_classes (type_name) VALUES ('Robotyka: Mój pierwszy robot');
 INSERT INTO types_of_classes (type_name) VALUES ('Robotyka: Wyzwanie');
-
+--
 
 -- CLASSES
 INSERT INTO classes (class_name, day_of_week, duration, start_hour, type_id) VALUES ('PON-MC-PODST-17', 'PONIEDZIAŁEK', 90, '17:00', 1);
 INSERT INTO classes (class_name, day_of_week, duration, start_hour, type_id) VALUES ('WT-EL-PODST-17', 'WTOREK', 90, '16:30', 4);
+--
 
 -- CHILDREN
 INSERT INTO children (active, first_name, last_name, gender, age, client_id) VALUES (true, 'Jan', 'Kowalski', 'M', 11, 1);
 INSERT INTO children (active, first_name, last_name, gender, age, client_id) VALUES (true, 'Joanna', 'Kwiatkowska', 'K', 8, 2);
+--
 
 -- CHILD - CLASS
 INSERT INTO child_class (child_id, class_id) VALUES (1, 2);
 INSERT INTO child_class (child_id, class_id) VALUES (2, 1);
+--
+
+-- CALLENDAR
+INSERT INTO calendar (date_of_activities) VALUES ('2018-10-20');
+INSERT INTO calendar (date_of_activities) VALUES ('2018-10-27');
+INSERT INTO calendar (date_of_activities) VALUES ('2018-11-05');
+INSERT INTO calendar (date_of_activities) VALUES ('2018-11-17');
+
+-- CLASSESS - CALENDARS
+INSERT INTO classes_calendars (class_id, calendar_id) VALUES (1, 1);
+INSERT INTO classes_calendars (class_id, calendar_id) VALUES (1, 2);
+INSERT INTO classes_calendars (class_id, calendar_id) VALUES (2, 3);
+INSERT INTO classes_calendars (class_id, calendar_id) VALUES (2, 4);
+
+-- PAYMENTS
+INSERT INTO payments (amount, paymant_day) VALUES (100.00, '2018-11-01');
+INSERT INTO payments (amount, paymant_day) VALUES (100.00, '2018-12-01');
+INSERT INTO payments (amount, paymant_day) VALUES (100.00, '2018-11-01');
+INSERT INTO payments (amount, paymant_day) VALUES (100.00, '2018-12-01');
+
+-- CLIENT - PAYMENTS
+INSERT INTO clients_payments (client_id, paymant_id) VALUES (1, 1);
+INSERT INTO clients_payments (client_id, paymant_id) VALUES (1, 2);
+INSERT INTO clients_payments (client_id, paymant_id) VALUES (2, 3);
+INSERT INTO clients_payments (client_id, paymant_id) VALUES (2, 4);
+
+-- INSTALLMENTS
+INSERT INTO installments (amount, paymant_day, payment_id) VALUES (100.00, '2018-11-01', 1);
+INSERT INTO installments (amount, paymant_day, payment_id) VALUES (100.00, '2018-12-01', 2);
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2018-11-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2018-12-01');
+
+-- CLIENTS - INSTALLMENTS
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 1);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 2);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (2, 3);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (2, 4);

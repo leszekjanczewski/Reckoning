@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <!--<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>-->
 </head>
@@ -28,13 +28,13 @@
                 <!--</li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${('!isAuthenticated()')}">
+                <li th:if="authenticated">
                     <a href="/login" th:href="@{/login}">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Zaloguj się
                     </a>
                 </li>
-                <li th:if="${('isAuthenticated()')}">
-                    <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                <li th:unless="authenticated">
+                    <a href="/logout" th:href="@{/logout}" onclick="$('#form').submit();">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Wyloguj się
                     </a>
                     <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>

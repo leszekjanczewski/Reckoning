@@ -18,7 +18,10 @@ class HomeController {
         return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
     }
 
+    /*@GetMapping("/")
+    public String home() {
+        return "index";
+    }*/
 
-//    @PostMapping("/")
 
 }
