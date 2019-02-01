@@ -1,6 +1,9 @@
 INSERT INTO users (email, enable, first_name, last_name, login, password) VALUES ('admin@admin', true, 'admin', 'admin', 'admin', '$2a$10$PABIIGOFqtzC8A3eBcYaauQrsxaJlzTJdDKjWZUhD5GgduwfNvwW6');
-INSERT INTO roles (role) VALUES ('ADMIN');
+INSERT INTO users (email, enable, first_name, last_name, login, password) VALUES ('user@user', true, 'user', 'user', 'user', '$2a$10$D/bgcitxQlRKEifUCIXBZuX/d.hBuVAsmpT4DQtdaKSd1zQ1/Orfu');
+INSERT INTO roles (role) VALUES ('ROLE_ADMIN');
+INSERT INTO roles (role) VALUES ('ROLE_USER');
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (2, 2);
 
 -- CLIENTS
 INSERT INTO clients (first_name, last_name, gender, phone, email, active, street, city, post_code) VALUES ('Adam', 'Kowalski', 'M', '601203405', 'adam@adam.pl', true, 'Kolorowa 2a', 'Gorzów Wlkp.', '66-400');

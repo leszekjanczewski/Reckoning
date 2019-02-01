@@ -2,18 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Reckoning</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}">
 </head>
 
-<body>
-<div th:replace="~{fragments/header :: header}">Header</div>
-
-<div class="container">
+<div class="container" th:fragment="contentnotloged">
     <div class="hero-unit">
         <h1 class="h1">Podaj e-mail lub numer telefonu aby wyszukać informacje</h1>
         <div class="input-group" th:classappend="input-group-lg">
@@ -21,20 +13,30 @@
                 <span class="input-group-text" id="inputGroup-sizing-lg">E-mail lub telefon</span>
             </div>
             <form method="post">
-            <input type="text" name="phone" class="form-control" placeholder="przyklad@domena.pl lub 601203405" aria-label="Search Text" aria-describedby="basic-addon1">
+                <input type="text" name="phone" class="form-control" placeholder="przyklad@domena.pl lub 601203405"
+                       aria-label="Search Text" aria-describedby="basic-addon1">
                 <input class="btn btn-large btn-success" type="submit" value="Sprawdź">
             </form>
         </div>
-        <!--<p>-->
-            <!--<a href="/" th:href="@{/}" class="btn btn-large btn-success">Sprawdź</a>-->
-        <!--</p>-->
 
     </div>
+    <table class="table">
+        <thead>
+        <tr scope="col">Imię</tr>
+        <tr scope="col">Nazwisko</tr>
+        <tr scope="col">Telefon</tr>
+        <tr scope="col">E-mail</tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${firstName}">name</td>
+            <td th:text="${lastName}">name</td>
+            <td th:text="${phone}">name</td>
+            <td th:text="${email}">name</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-<p th:text="${name}"></p>
-<div th:insert="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

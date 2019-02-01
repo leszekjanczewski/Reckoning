@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>-->
+    <meta charset="UTF-8">
+    <style th:remove="all"></style>
 </head>
 <body>
-<div th:fragment="footer" th:align="center">
-    &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2019</span>
-    <span>Reconing ROBO-US Leszek Janczewski</span>
-</div>
-<div th:fragment="footer-admin" th:align="center">
-    &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2019</span>
-    <span>Reconing ROBO-US Leszek Janczewski - Administrator Mode</span><span th:text="${@environment.getProperty('app.version')}"></span>
+<div class="container" th:fragment="footer">
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2019</span>
+            <span>Reconing ROBO-US Leszek Janczewski</span>
+        </div>
+    </div>
 </div>
 </body>
 </html>

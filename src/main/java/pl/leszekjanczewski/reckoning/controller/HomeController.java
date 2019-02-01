@@ -13,11 +13,15 @@ import java.security.Principal;
 class HomeController {
 
 
-    @GetMapping("/")
-    String home(Principal principal) {
-        return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
-    }
+//    @GetMapping("/")
+//    String home(Principal principal) {
+//        return principal != null ? "home/homeSignedIn" : "index";
+//    }
 
+    @GetMapping("/")
+    public String home() {
+        return "index";
+    }
     /*@GetMapping("/")
     public String home() {
         return "index";

@@ -3,21 +3,11 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Admin Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Reckoning - Admin Page</title>
 </head>
 
 <body>
-<div class="container">
-
-    <form th:action="@{/logout}" method="get">
-        <button class="btn btn-md btn-danger btn-block" name="registration"
-                type="Submit">Logout
-        </button>
-    </form>
+<div class="container" th:fragment="roleAdmin">
 
     <div class="panel-group" style="margin-top:40px">
         <div class="panel panel-primary">
@@ -35,5 +25,7 @@
 </div>
 
 <div th:insert="~{fragments/footer :: footer-admin}">Footer</div>
+<script src="../../static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="../../static/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
 </body>
 </html>

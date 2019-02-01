@@ -43,29 +43,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
-                .authenticated().and().csrf().disable()
-                .formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
+                .authorizeRequests().antMatchers("/").permitAll()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .and().authorizeRequests().antMatchers("/static/css/**", "/static/js/**", "/static/images/**", "/static/fonts/**", "/**/favicon.ico").permitAll()
+                .and().formLogin()
+                .loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/").permitAll()
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .and()
-                .logout()
-                .permitAll()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");
+                    .logout()
+                    .deleteCookies("remove")
+                    .invalidateHttpSession(true)
+                    .permitAll()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/").and().exceptionHandling()
+                    .accessDeniedPage("/access-denied");
     }
 
-    @Override
-    public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/fonts/**", "/beans/**");
-    }
+//    @Override
+//    public void configure(WebSecurity webSecurity) throws Exception {
+//        webSecurity
+//                .ignoring()
+//                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/fonts/**", "/beans/**");
+//    }
 }
