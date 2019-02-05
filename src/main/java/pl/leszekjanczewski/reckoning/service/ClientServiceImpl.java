@@ -17,8 +17,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findClientByPhoneOrEmail(String phone, String email) {
-        return clientRepo.findClientByPhoneOrEmail(phone, email);
+    public Client findClientByPhoneOrEmail(String phone, String email) throws NullPointerException {
+        try {
+            return clientRepo.findClientByPhoneOrEmail(phone, email);
+        } catch (NullPointerException e) {
+            return new Client();
+        }
     }
 
     @Override
