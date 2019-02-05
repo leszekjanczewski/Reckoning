@@ -4,5 +4,5 @@ import pl.leszekjanczewski.reckoning.model.Client;
 
 public interface ClientService {
     Client findClientByPhoneOrEmail(String phone, String email);
-    void saveClient(Client client);
+    Client saveClient(Client client);
 }

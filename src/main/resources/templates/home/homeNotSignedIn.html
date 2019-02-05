@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
 
 <head>
 
 </head>
 
-<div class="container" th:fragment="contentnotloged">
-    <div class="hero-unit">
-        <h1 class="h1">Podaj e-mail lub numer telefonu aby wyszukać informacje</h1>
-        <div class="input-group" th:classappend="input-group-lg">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-lg">E-mail lub telefon</span>
+<div class="container col-lg-12" th:fragment="contentnotloged">
+    <div class="row col-md-10">
+        <h2 class="h1">Podaj e-mail lub numer telefonu aby wyszukać informacje</h2>
+        <form th:action="@{/search}" method="post">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="search" name="search"
+                       placeholder="Przykładowe wartości: przyklad@domena.pl lub 601203405">
             </div>
-            <form method="post">
-                <input type="text" name="phone" class="form-control" placeholder="przyklad@domena.pl lub 601203405"
-                       aria-label="Search Text" aria-describedby="basic-addon1">
-                <input class="btn btn-large btn-success" type="submit" value="Sprawdź">
-            </form>
-        </div>
-
+            <div class="col-md-4">
+                <button type="reset" class="btn btn-primary">Wyczyść</button>
+                <button type="submit" class="btn btn-primary">Szukaj</button>
+            </div>
+        </form>
     </div>
-    <table class="table">
-        <thead>
-        <tr scope="col">Imię</tr>
-        <tr scope="col">Nazwisko</tr>
-        <tr scope="col">Telefon</tr>
-        <tr scope="col">E-mail</tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${firstName}">name</td>
-            <td th:text="${lastName}">name</td>
-            <td th:text="${phone}">name</td>
-            <td th:text="${email}">name</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row col-md-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Telefon</th>
+                <th scope="col">E-mail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${firstName}">name</td>
+                <td th:text="${lastName}">name</td>
+                <td th:text="${phone}">name</td>
+                <td th:text="${email}">name</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
 </body>
 </html>

@@ -16,17 +16,17 @@ public class HomeNotSignedControllorer {
     @Autowired
     ClientRepo clientRepo;
 
-    @PostMapping("/")
-    public String findClientByPhoneOrEmail(@RequestParam String phone, Model model) {
-        Client client = clientRepo.findClientByPhoneOrEmail(phone, phone);
-        String firstName = client.getFirstName();
-        String lastName = client.getLastName();
-        String clientPhone = client.getPhone();
-        String email = client.getEmail();
-        model.addAttribute("firstName", firstName);
-        model.addAttribute("lastName", lastName);
-        model.addAttribute("phone", clientPhone);
-        model.addAttribute("email", email);
-        return "home/homeNotSignedIn";
-    }
+//    @PostMapping("/")
+//    public String findClientByPhoneOrEmail(@RequestParam String phone, Model model) {
+//        Client client = clientRepo.findClientByPhoneOrEmail(phone, phone);
+//        String firstName = client.getFirstName();
+//        String lastName = client.getLastName();
+//        String clientPhone = client.getPhone();
+//        String email = client.getEmail();
+//        model.addAttribute("firstName", firstName);
+//        model.addAttribute("lastName", lastName);
+//        model.addAttribute("phone", clientPhone);
+//        model.addAttribute("email", email);
+//        return "home/homeNotSignedIn";
+//    }
 }

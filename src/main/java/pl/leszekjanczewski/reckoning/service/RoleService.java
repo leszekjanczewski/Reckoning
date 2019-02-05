@@ -5,6 +5,5 @@ import pl.leszekjanczewski.reckoning.model.Role;
 public interface RoleService {
 
     Role findRoleByRole(String role);
-    void saveRole(Role role);
-
+    Role save(Role role);
 }

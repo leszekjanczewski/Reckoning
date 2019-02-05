@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container col-md-4">
+    <form th:action="@{/admin/addUser}" th:object="${user}" method="post">
+        <div class="form-group">
+            <label for="firstName">Imię</label>
+            <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                   placeholder="Podaj imię użytkownika">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Nazwisko</label>
+            <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                   placeholder="Podaj nazwisko użytkownika">
+        </div>
+        <div class="form-group">
+            <label for="email">e-mail</label>
+            <input th:field="*{email}" type="email" class="form-control" id="email"
+                   placeholder="Podaj e-mail użytkownika">
+        </div>
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input th:field="*{login}" type="text" class="form-control" id="login"
+                   placeholder="Podaj login użytkownika">
+        </div>
+        <div class="form-group">
+            <label for="password">Hasło</label>
+            <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Podaj hasło">
+        </div>
+       <!-- <div class="form-group">
+            <label for="role">Wybierz rolę użytkownika</label>
+            <select id="role" th:field="*{roles}">
+                <option th:each="role : ${roles}"
+                        th:value="${role.getRoleId()}"
+                        th:text="${role.getRole()}">
+                </option>
+            </select>
+        </div>-->
+        <div class="row">
+            <button type="reset" class="btn btn-primary"><a href="/" style="color: white;">Anuluj</a></button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

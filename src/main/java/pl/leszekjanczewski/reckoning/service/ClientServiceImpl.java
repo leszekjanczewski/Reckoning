@@ -8,7 +8,8 @@ import pl.leszekjanczewski.reckoning.repository.ClientRepo;
 @Service
 public class ClientServiceImpl implements ClientService {
 
-    private ClientRepo clientRepo;
+    @Autowired
+    ClientRepo clientRepo;
 
     @Autowired
     public ClientServiceImpl(ClientRepo clientRepo) {
@@ -21,7 +22,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void saveClient(Client client) {
-        clientRepo.save(client);
+    public Client saveClient(Client client) {
+        return clientRepo.save(client);
     }
 }
