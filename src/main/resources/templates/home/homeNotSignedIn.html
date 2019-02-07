@@ -40,6 +40,21 @@
             </tbody>
         </table>
     </div>
+<!--TARGET  TABLE ON MINE PAGE-->
+    <div class="row col-md-12">
+        <table class="table">
+            <thead>
+            <tr th:each="installment: ${installments}">
+                <th scope="col" th:text="${installment.amount}">Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="installment: ${installments}">
+                <td th:text="${installment.amount}">kwota</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

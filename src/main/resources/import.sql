@@ -59,13 +59,29 @@ INSERT INTO clients_payments (client_id, paymant_id) VALUES (2, 3);
 INSERT INTO clients_payments (client_id, paymant_id) VALUES (2, 4);
 
 -- INSTALLMENTS
-INSERT INTO installments (amount, paymant_day, payment_id) VALUES (100.00, '2018-11-01', 1);
-INSERT INTO installments (amount, paymant_day, payment_id) VALUES (100.00, '2018-12-01', 2);
+INSERT INTO installments (amount, paymant_day, payment_id) VALUES (200.00, '2018-09-01', 1);
+INSERT INTO installments (amount, paymant_day, payment_id) VALUES (100.00, '2018-10-01', 2);
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2018-11-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2018-12-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2019-01-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2019-02-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2019-03-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2019-04-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2019-05-01');
+INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2019-06-01');
 INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2018-11-01');
 INSERT INTO installments (amount, paymant_day) VALUES (100.00, '2018-12-01');
 
 -- CLIENTS - INSTALLMENTS
 INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 1);
 INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 2);
-INSERT INTO clients_installments (client_id, installment_id) VALUES (2, 3);
-INSERT INTO clients_installments (client_id, installment_id) VALUES (2, 4);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 3);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 4);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 5);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 6);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 7);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 8);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 9);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (1, 10);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (2, 11);
+INSERT INTO clients_installments (client_id, installment_id) VALUES (2, 12);
