@@ -19,13 +19,13 @@ To check status of my build status I use travise-ci.com, coveralls.io
 ![Admin page](media/Screenshot%20from%202019-02-07%2009-02-06.png)
 
 # Tech/framework used
-## Maven
-## Spring
-## Hibernate
-## JPA
+* Maven
+* Spring
+* Hibernate
+* JPA
 
 # Features
-## add an invoice by the customer via e-mail
+* add an invoice by the customer via e-mail
 
 # Installation
 
