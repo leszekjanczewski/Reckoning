@@ -14,4 +14,20 @@ To check status of my build status I use travise-ci.com, coveralls.io
 
 # Screenshots
 
-![Title site](media/Screenshot%20from%202019-02-07%2008-58-14.png)
+![Title page](media/Screenshot%20from%202019-02-07%2008-58-14.png)
+![Login page](media/Screenshot%20from%202019-02-07%2009-01-27.png)
+![Admin page](media/Screenshot%20from%202019-02-07%2009-02-06.png)
+
+# Tech/framework used
+## Maven
+## Spring
+## Hibernate
+## JPA
+
+# Features
+## add an invoice by the customer via e-mail
+
+# Installation
+
+# How to use?
+You can login using temporary user for administration: admin/admin, for user: user/admin
