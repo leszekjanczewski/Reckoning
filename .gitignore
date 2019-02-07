@@ -382,6 +382,7 @@ bin-release/
 [Bb]in/
 
 # Other files and folders
+media/
 
 # Executables
 *.swf
