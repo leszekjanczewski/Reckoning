@@ -18,14 +18,14 @@ public class UserControler {
 
     @GetMapping("/user/listClass")
     public String listClass(Model model) {
-/*        List<Class> classList = classRepo.findAll();
-        model.addAttribute("classes", classList);*/
+        List<Class> classList = classRepo.findAll();
+        model.addAttribute("classes", classList);
         return "index";
     }
 
-    @ModelAttribute("classes")
+    /*@ModelAttribute("classes")
     public List<Class> classList() {
         List<Class> classList = classRepo.findAll();
         return classList;
-    }
+    }*/
 }

@@ -6,4 +6,7 @@ import pl.leszekjanczewski.reckoning.model.Child;
 
 @Repository
 public interface ChildRepo extends JpaRepository<Child, Long> {
+
+    Child findByChildId(Long id);
+
 }

@@ -4,17 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.leszekjanczewski.reckoning.model.Child;
 import pl.leszekjanczewski.reckoning.model.Client;
 import pl.leszekjanczewski.reckoning.model.Role;
 import pl.leszekjanczewski.reckoning.model.User;
+import pl.leszekjanczewski.reckoning.repository.ChildRepo;
 import pl.leszekjanczewski.reckoning.repository.ClientRepo;
 import pl.leszekjanczewski.reckoning.repository.RoleRepo;
 import pl.leszekjanczewski.reckoning.repository.UserRepo;
+import pl.leszekjanczewski.reckoning.service.ChildServiceImpl;
 import pl.leszekjanczewski.reckoning.service.ClientServiceImpl;
-import pl.leszekjanczewski.reckoning.service.RoleServiceImpl;
 import pl.leszekjanczewski.reckoning.service.UserServiceImpl;
 
-import java.util.Arrays;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +38,10 @@ public class AdminController {
     @Autowired
     private ClientRepo clientRepo;
 
+    @Autowired private ChildServiceImpl childService;
+
+    @Autowired private ChildRepo childRepo;
+
     @GetMapping("/admin/addUser")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
@@ -50,6 +56,8 @@ public class AdminController {
 
     @GetMapping("/admin/listUser")
     public String listUsers(Model model) {
+        List<User> userList = userRepo.findAll();
+        model.addAttribute("users", userList);
         return "index";
     }
 
@@ -80,6 +88,8 @@ public class AdminController {
 
     @GetMapping("/admin/listClients")
     public String listClients(Model model) {
+        List<Client> clientList = clientRepo.findAll();
+        model.addAttribute("clients", clientList);
         return "index";
     }
 
@@ -95,12 +105,40 @@ public class AdminController {
         clientRepo.delete(clientRepo.findByClientId(id));
         return "redirect:/admin/listUser";
     }
-
-    @ModelAttribute("users")
-    public List<User> userList() {
-        List<User> userList = userRepo.findAll();
-        return userList;
+    /**/
+    @GetMapping("/admin/addChild")
+    public String addChild(Model model) {
+        model.addAttribute("child", new Child());
+        return "admin/addChildForm";
     }
+
+    @PostMapping("/admin/addChild")
+    public String saveAddChild(@ModelAttribute Child child) {
+        childService.saveChild(child);
+        return "redirect:/admin/listChildren";
+    }
+
+    @GetMapping("/admin/listChildren")
+    public String listChildren(Model model) {
+        List<Child> children = childRepo.findAll();
+        model.addAttribute("children", children);
+        return "index";
+    }
+
+    @GetMapping("/admin/editChild/{id}")
+    public String editChild(@PathVariable Long id, Model model) {
+        Child child = childRepo.findByChildId(id);
+        model.addAttribute("child", child);
+        return "redirect:/admin/addChild";
+    }
+
+    @GetMapping("/admin/removeChild/{id}")
+    public String removeChild(@PathVariable Long id) {
+        childRepo.delete(childRepo.findByChildId(id));
+        return "redirect:/admin/listChildren";
+    }
+
+    /**/
 
     @ModelAttribute("roles")
     public List<Role> roleList() {
@@ -108,9 +146,4 @@ public class AdminController {
         return roleList;
     }
 
-    @ModelAttribute("clients")
-    public List<Client> clientList() {
-        List<Client> clientList = clientRepo.findAll();
-        return clientList;
-    }
 }

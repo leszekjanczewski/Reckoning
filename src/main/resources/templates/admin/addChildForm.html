@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container col-md-4">
+    <form th:action="@{/admin/addChild}" th:object="${child}" method="post">
+        <div class="form-group">
+            <label for="firstName">Imię</label>
+            <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                   placeholder="Podaj imię dziecka">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Nazwisko</label>
+            <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                   placeholder="Podaj nazwisko dziecka">
+        </div>
+        <div class="form-group">
+            <label for="age">Wiek</label>
+            <input th:field="*{age}" type="text" class="form-control" id="age"
+                   placeholder="Podaj wiek dziecka">
+        </div>
+        <div class="form-group">
+            <label for="gender">Płeć</label>
+            <select name="gender" id="gender" th:field="*{gender}">
+                <option th:value="'K'">Dziewczynka</option>
+                <option th:value="'M'">Chłopiec</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="parent">Rodzic/Opiekun</label>
+            <select name="parent" id="parent" th:field="*{client}">
+                <option th:each="child : ${children}"
+                        th:value="${child.client.clientId}"
+                        th:text="${child.client.firstName}">opiekun</option>
+            </select>
+        </div>
+       <!-- <div class="form-group">
+            <label for="role">Wybierz rolę użytkownika</label>
+            <select id="role" th:field="*{roles}">
+                <option th:each="role : ${roles}"
+                        th:value="${role.getRoleId()}"
+                        th:text="${role.getRole()}">
+                </option>
+            </select>
+        </div>-->
+        <div class="row">
+            <button type="reset" class="btn btn-primary">Anuluj</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
