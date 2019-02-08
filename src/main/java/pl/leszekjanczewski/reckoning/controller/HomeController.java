@@ -50,11 +50,7 @@ class HomeController {
             Client client = clientService.findClientByPhoneOrEmail(search, search);
             Long clientTocheckId = client.getClientId();
             List<Installment> installmentList = installmentService.findInstallmentsByClientsClientId(clientTocheckId);
-            model.addAttribute("firstName", client.getFirstName());
-            model.addAttribute("lastName", client.getLastName());
-            model.addAttribute("phone", client.getPhone());
-            model.addAttribute("email", client.getEmail());
-            model.addAttribute("instalments", installmentList);
+            model.addAttribute("installments", installmentList);
             return "index";
         } catch (NullPointerException e) {
             return "index";

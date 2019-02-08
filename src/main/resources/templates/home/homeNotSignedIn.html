@@ -20,7 +20,7 @@
             </div>
         </form>
     </div>
-    <div class="row col-md-12">
+  <!--  <div class="row col-md-12">
         <table class="table">
             <thead>
             <tr>
@@ -39,18 +39,24 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
 <!--TARGET  TABLE ON MINE PAGE-->
     <div class="row col-md-12">
         <table class="table">
             <thead>
-            <tr th:each="installment: ${installments}">
-                <th scope="col" th:text="${installment.amount}">Data</th>
+            <tr>
+                <th scope="row">Data opłaty</th>
+                <th scope="col" th:each="installment: ${installments}" th:text="${installment.paymantDay}">Data</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="installment: ${installments}">
-                <td th:text="${installment.amount}">kwota</td>
+            <tr>
+                <th scope="row">Kwota opłaty</th>
+                <td th:each="installment: ${installments}" th:text="${installment.amount}">kwota</td>
+            </tr>
+            <tr>
+                <th scope="row">Czy opłacone?</th>
+                <td th:each="installment: ${installments}" th:text="${installment.payment} ? 'TAK' : 'NIE'">opłata</td>
             </tr>
             </tbody>
         </table>

@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface InstallmentRepo extends JpaRepository<Installment, Long> {
 
-    @Query(value = "SELECT installments.paymant_day, installments.amount, installments.payment_id FROM installments, clients_installments INNER JOIN clients ON clients_installments.client_id = clients.client_id WHERE clients.client_id = :clientid AND clients_installments.installment_id = installments.installment_id", nativeQuery = true)
+    @Query(value = "SELECT installments.installment_id, installments.paymant_day, installments.amount, installments.payment_id FROM installments, clients_installments INNER JOIN clients ON clients_installments.client_id = clients.client_id WHERE clients.client_id = :clientid AND clients_installments.installment_id = installments.installment_id", nativeQuery = true)
     List<Installment> findInstallmentsByClientsClientId(@Param("clientid") Long id);
 
 }
