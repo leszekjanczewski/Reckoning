@@ -44,7 +44,7 @@ class HomeController {
     @PostMapping("/search")
     public String searchClient(@RequestParam String search, Model model) {
         if (search.isEmpty()) {
-            return "index";
+            return "redirect:/";
         }
         try {
             Client client = clientService.findClientByPhoneOrEmail(search, search);
@@ -53,7 +53,7 @@ class HomeController {
             model.addAttribute("installments", installmentList);
             return "index";
         } catch (NullPointerException e) {
-            return "index";
+            return "redirect:/";
         }
 
     }

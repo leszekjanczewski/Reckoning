@@ -29,8 +29,8 @@
         </div>
         <div class="col-lg-10">
             <div class="row">
-                <select class="form-control" th:field="${classes}">
-                    <option th:each="class: ${classes}" th:value="${class.classId}" th:text="class.className"></option>
+                <select class="form-control">
+                    <option th:each="class : ${classes}" th:value="${class.classId}" th:utext="${class.className} + ' - ' + ${class.dayOfWeek} + ' - ' + ${class.typeOfClass.typeOfClassName}">klasa</option>
                 </select>
             </div>
         </div>
