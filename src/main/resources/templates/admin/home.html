@@ -61,17 +61,24 @@
                     <th scope="col">Nazwisko</th>
                     <th scope="col">Login</th>
                     <th scope="col">E-mail</th>
+                    <th scope="col">Role</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user, iter: ${users}">
+                <tr th:each="user, iter : ${users}">
                     <td th:text="${iter.count}"></td>
+                    <!--/*@thymesVar id="user" type="pl.leszekjanczewski.reckoning.model.User"*/-->
                     <td th:text="${user.firstName}"></td>
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.login}"></td>
                     <td th:text="${user.email}"></td>
+                    <td>
+                        <ul th:each="userRole : ${user.roles}">
+                            <li th:text="${userRole.role}">rola</li>
+                        </ul>
+                    </td>
                     <td><a th:href="@{'/admin/editUser/' + ${user.userId}}">Edytuj</a></td>
                     <td><a th:href="@{'/admin/removeUser/' + ${user.userId}}">Usuń</a></td>
                 </tr>
@@ -203,8 +210,13 @@
                     <td th:text="${child.getLastName()}"></td>
                     <td th:text="${child.getAge()}"></td>
                     <td th:text="${child.getGender()}"></td>
-                    <td th:text="${child.getClient().lastName}"></td>
-                    <td th:text="${child.getChildId()}"></td>
+                    <td th:text="${child.getClient().firstName} + ' ' + ${child.getClient().lastName}"></td>
+                    <td>
+                        <ul th:each="class : ${child.getClasses()}">
+                            <li th:text="${class.getClassName()}">
+                            </li>
+                        </ul>
+                    </td>
                     <td><a th:href="@{'/admin/editChild/' + ${child.childId}}">Edytuj</a></td>
                     <td><a th:href="@{'/admin/removeChild/' + ${child.childId}}">Usuń</a></td>
                 </tr>
@@ -212,40 +224,7 @@
             </table>
         </div>
     </div>
-
-    <!--<div class="container col-md-4">
-        <form action="" id="formularz">
-            <div class="form-group">
-                <label for="firstName">Imię</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Podaj imię użytkownika">
-            </div>
-            <div class="form-group">
-                <label for="lastName">Nazwisko</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Podaj nazwisko użytkownika">
-            </div>
-            <div class="form-group">
-                <label for="email">e-mail</label>
-                <input type="email" class="form-control" id="email" placeholder="Podaj e-mail użytkownika">
-            </div>
-            <div class="form-group">
-                <label for="login">Login</label>
-                <input type="text" class="form-control" id="login" placeholder="Podaj login użytkownika">
-            </div>
-            <div class="form-group">
-                <label for="password">Hasło</label>
-                <input type="password" class="form-control" id="password" placeholder="Podaj hasło">
-            </div>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
-        </form>
-    </div>-->
-
 </div>
 
-<!--<script>-->
-<!--$("#klikacz").click(function () {-->
-<!--$("#formularz").toggle();-->
-<!--});-->
-</script>
-<
-/body>
-< /html>
+</body>
+</html>

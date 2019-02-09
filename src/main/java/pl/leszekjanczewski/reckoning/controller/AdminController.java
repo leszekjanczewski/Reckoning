@@ -5,18 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.leszekjanczewski.reckoning.model.Child;
+import pl.leszekjanczewski.reckoning.model.Class;
 import pl.leszekjanczewski.reckoning.model.Client;
 import pl.leszekjanczewski.reckoning.model.Role;
 import pl.leszekjanczewski.reckoning.model.User;
-import pl.leszekjanczewski.reckoning.repository.ChildRepo;
-import pl.leszekjanczewski.reckoning.repository.ClientRepo;
-import pl.leszekjanczewski.reckoning.repository.RoleRepo;
-import pl.leszekjanczewski.reckoning.repository.UserRepo;
+import pl.leszekjanczewski.reckoning.repository.*;
 import pl.leszekjanczewski.reckoning.service.ChildServiceImpl;
 import pl.leszekjanczewski.reckoning.service.ClientServiceImpl;
 import pl.leszekjanczewski.reckoning.service.UserServiceImpl;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,16 +39,20 @@ public class AdminController {
 
     @Autowired private ChildRepo childRepo;
 
+    @Autowired private ClassRepo classRepo;
+
     @GetMapping("/admin/addUser")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
+        List<Role> roleList = roleRepo.findAll();
+        model.addAttribute("roles", roleList);
         return "admin/addUserForm";
     }
 
     @PostMapping("/admin/addUser")
     public String saveAddUser(@ModelAttribute User user) {
         userService.saveUser(user);
-        return "redirect:/admin/listUser";
+        return "redirect:/";
     }
 
     @GetMapping("/admin/listUser")
@@ -63,7 +64,7 @@ public class AdminController {
 
     @GetMapping("/admin/editUser/{id}")
     public String editUser(@PathVariable Long id, Model model) {
-        Optional<User> user = userRepo.findById(id);
+        User user = userRepo.findByUserId(id);
         model.addAttribute("user", user);
         return "redirect:/admin/addUser";
     }
@@ -109,11 +110,16 @@ public class AdminController {
     @GetMapping("/admin/addChild")
     public String addChild(Model model) {
         model.addAttribute("child", new Child());
+        List<Client> clientList = clientRepo.findAll();
+        model.addAttribute("clients", clientList);
+        List<Class> classList = classRepo.findAll();
+        model.addAttribute("classes", classList);
         return "admin/addChildForm";
     }
 
     @PostMapping("/admin/addChild")
     public String saveAddChild(@ModelAttribute Child child) {
+        child.setActive(true);
         childService.saveChild(child);
         return "redirect:/admin/listChildren";
     }
@@ -122,6 +128,8 @@ public class AdminController {
     public String listChildren(Model model) {
         List<Child> children = childRepo.findAll();
         model.addAttribute("children", children);
+        List<Class> classList = classRepo.findAll();
+        model.addAttribute("classes", classList);
         return "index";
     }
 
@@ -137,13 +145,4 @@ public class AdminController {
         childRepo.delete(childRepo.findByChildId(id));
         return "redirect:/admin/listChildren";
     }
-
-    /**/
-
-    @ModelAttribute("roles")
-    public List<Role> roleList() {
-        List<Role> roleList = roleRepo.findAll();
-        return roleList;
-    }
-
 }

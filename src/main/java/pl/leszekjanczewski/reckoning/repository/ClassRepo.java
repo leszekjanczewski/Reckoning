@@ -6,4 +6,7 @@ import pl.leszekjanczewski.reckoning.model.Class;
 
 @Repository
 public interface ClassRepo extends JpaRepository<Class, Long> {
+
+    Class findByClassId(Long id);
+
 }

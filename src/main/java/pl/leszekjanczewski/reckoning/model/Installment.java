@@ -2,6 +2,7 @@ package pl.leszekjanczewski.reckoning.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -33,11 +34,14 @@ public class Installment {
     private Payment payment;
 
     @ManyToMany(mappedBy = "installments")
+    @EqualsAndHashCode.Exclude
     private Set<Child> children = new HashSet<>();
 
     @ManyToMany(mappedBy = "installments")
+    @EqualsAndHashCode.Exclude
     private Set<Class> classes = new HashSet<>();
 
     @ManyToMany(mappedBy = "installments")
+    @EqualsAndHashCode.Exclude
     private Set<Client> clients = new HashSet<>();
 }

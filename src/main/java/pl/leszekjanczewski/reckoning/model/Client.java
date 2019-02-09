@@ -2,6 +2,7 @@ package pl.leszekjanczewski.reckoning.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -54,10 +55,12 @@ public class Client {
     @Column(name = "post_code")
     private String postCode;
 
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "clients_payments", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "paymant_id"))
     private Set<Payment> payments = new HashSet<>();
 
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "clients_installments", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "installment_id"))
     private Set<Installment> installments = new HashSet<>();
