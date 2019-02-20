@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+
+<div class="container" th:replace="~{fragments/header :: header}">Header</div>
+<link href="../css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
+
+<h1 class="col-md-12">Formularz dodawania użytkownika</h1>
 <div class="container col-md-4">
     <form th:action="@{/admin/addUser}" th:object="${user}" method="post">
         <div class="form-group">
@@ -46,5 +51,11 @@
         </div>
     </form>
 </div>
+
+<div class="container" th:replace="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
+
+<script src="../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
 </body>
 </html>
