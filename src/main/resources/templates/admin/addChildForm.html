@@ -9,58 +9,65 @@
 
 <div class="container" th:replace="~{fragments/header :: header}">Header</div>
 
-<h1>Formularz dodawania dziecka</h1>
-<div class="container col-md-4">
-    <form th:action="@{/admin/addChild}" th:object="${child}" method="post">
-        <div class="form-group">
-            <label for="firstName">Imię</label>
-            <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
-                   placeholder="Podaj imię dziecka">
-        </div>
-        <div class="form-group">
-            <label for="lastName">Nazwisko</label>
-            <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
-                   placeholder="Podaj nazwisko dziecka">
-        </div>
-        <div class="form-group">
-            <label for="age">Wiek</label>
-            <input th:field="*{age}" type="text" class="form-control" id="age"
-                   placeholder="Podaj wiek dziecka">
-        </div>
-        <div class="form-group">
-            <label for="gender">Płeć</label>
-            <select class="form-control" name="gender" id="gender" th:field="*{gender}">
-                <option th:value="'K'">Dziewczynka</option>
-                <option th:value="'M'">Chłopiec</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="parent">Rodzic/Opiekun</label>
-            <select class="form-control" name="parent" id="parent" th:field="*{client}">
-                <option th:each="client : ${clients}"
-                        th:value="${client.clientId}"
-                        th:text="${client.firstName} + ' ' + ${client.lastName}">opiekun
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="class">Klasa</label>
-            <select multiple="multiple" class="form-control" name="class" id="class" th:field="*{classes}">
-                <option th:each="class : ${classes}"
-                        th:value="${class.classId}"
-                        th:text="${class.className}">klasa
-                </option>
-            </select>
-        </div>
+<h3 class="mx-auto col-md-12" style="color: #2b542c">Formularz dodawania dziecka</h3>
 
+<div class="container col-md-12 ml-2">
+    <form th:action="@{/admin/addChild}" th:object="${child}" method="post">
         <div class="row">
-            <button type="reset" class="btn btn-primary">Anuluj</button>
+            <div class="form-group col-md-6">
+                <label for="firstName">Imię</label>
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                       placeholder="Podaj imię dziecka">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Nazwisko</label>
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                       placeholder="Podaj nazwisko dziecka">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="age">Wiek</label>
+                <input th:field="*{age}" type="number" class="form-control" id="age"
+                       placeholder="Podaj wiek dziecka">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="gender">Płeć</label>
+                <select class="form-control" name="gender" id="gender" th:field="*{gender}">
+                    <option th:value="'K'">Dziewczynka</option>
+                    <option th:value="'M'">Chłopiec</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-group col-md-6">
+                <label for="parent">Rodzic/Opiekun</label>
+                <select class="form-control" name="parent" id="parent" th:field="*{client}">
+                    <option th:each="client : ${clients}"
+                            th:value="${client.clientId}"
+                            th:text="${client.firstName} + ' ' + ${client.lastName}">opiekun
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="class">Grupa</label>
+                <select multiple="multiple" class="form-control" name="class" id="class" th:field="*{classes}">
+                    <option th:each="class : ${classes}"
+                            th:value="${class.classId}"
+                            th:text="${class.className}">grupa
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 15px">
+            <button type="reset" class="btn btn-primary"><a href="/" style="color: white;">Anuluj</a></button>
             <button type="submit" class="btn btn-primary">Zapisz</button>
         </div>
     </form>
 </div>
-<div class="container" th:replace="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 
+<div class="container" th:replace="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
 
 <script src="../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
