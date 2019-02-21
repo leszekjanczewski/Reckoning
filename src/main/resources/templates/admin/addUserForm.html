@@ -3,49 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link href="../css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 </head>
 <body>
 
 <div class="container" th:replace="~{fragments/header :: header}">Header</div>
-<link href="../css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 
-<h1 class="col-md-12">Formularz dodawania użytkownika</h1>
-<div class="container col-md-4">
+    <h3 class="mx-auto col-md-12">Formularz dodawania użytkownika</h3>
+
+<div class="container col-md-12 ml-2">
     <form th:action="@{/admin/addUser}" th:object="${user}" method="post">
-        <div class="form-group">
-            <label for="firstName">Imię</label>
-            <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
-                   placeholder="Podaj imię użytkownika">
-        </div>
-        <div class="form-group">
-            <label for="lastName">Nazwisko</label>
-            <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
-                   placeholder="Podaj nazwisko użytkownika">
-        </div>
-        <div class="form-group">
-            <label for="email">e-mail</label>
-            <input th:field="*{email}" type="email" class="form-control" id="email"
-                   placeholder="Podaj e-mail użytkownika">
-        </div>
-        <div class="form-group">
-            <label for="login">Login</label>
-            <input th:field="*{login}" type="text" class="form-control" id="login"
-                   placeholder="Podaj login użytkownika">
-        </div>
-        <div class="form-group">
-            <label for="password">Hasło</label>
-            <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Podaj hasło">
-        </div>
-        <div class="form-group">
-            <label for="role">Wybierz rolę użytkownika</label>
-            <select class="form-control" multiple="multiple" id="role" th:field="*{roles}">
-                <option th:each="role : ${roles}"
-                        th:value="${role.getRoleId()}"
-                        th:text="${role.getRole()}">
-                </option>
-            </select>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="firstName">Imię</label>
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                       placeholder="Podaj imię użytkownika">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Nazwisko</label>
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                       placeholder="Podaj nazwisko użytkownika">
+            </div>
         </div>
         <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email">e-mail</label>
+                <input th:field="*{email}" type="email" class="form-control" id="email"
+                       placeholder="Podaj e-mail użytkownika">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="login">Login</label>
+                <input th:field="*{login}" type="text" class="form-control" id="login"
+                       placeholder="Podaj login użytkownika">
+            </div>
+            <div class="form-group col-md-6" style="color: darkred">
+                <label for="password">Hasło</label>
+                <input th:field="*{password}" type="password" class="form-control" id="password"
+                       placeholder="Podaj hasło">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="role">Wybierz rolę użytkownika</label>
+                <select class="form-control" multiple="multiple" id="role" th:field="*{roles}">
+                    <option th:each="role : ${roles}"
+                            th:value="${role.getRoleId()}"
+                            th:text="${role.getRole()}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 15px">
             <button type="reset" class="btn btn-primary"><a href="/" style="color: white;">Anuluj</a></button>
             <button type="submit" class="btn btn-primary">Zapisz</button>
         </div>

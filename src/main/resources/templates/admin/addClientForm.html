@@ -3,44 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link href="../css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 </head>
 <body>
-<div class="container col-md-4">
-    <form th:action="@{/admin/addClient}" th:object="${client}" method="post">
-        <div class="form-group">
-            <label for="firstName">Imię</label>
-            <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
-                   placeholder="Podaj imię klienta">
-        </div>
-        <div class="form-group">
-            <label for="lastName">Nazwisko</label>
-            <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
-                   placeholder="Podaj nazwisko klienta">
-        </div>
-        <div class="form-group">
-            <label for="email">e-mail</label>
-            <input th:field="*{email}" type="email" class="form-control" id="email"
-                   placeholder="Podaj e-mail klienta">
-        </div>
-        <div class="form-group">
-            <label for="phone">Telefon</label>
-            <input th:field="*{phone}" type="text" class="form-control" id="phone"
-                   placeholder="Podaj telefon klienta">
-        </div>
-        <div class="form-group">
-            <label for="street">Ulica</label>
-            <input th:field="*{street}" type="text" class="form-control" id="street"
-                   placeholder="Podaj ulicę zamieszkania klienta">
-        </div>
-        <div class="form-group">
-            <label for="postCode">Kod pocztowy</label>
-            <input th:field="*{postCode}" type="text" class="form-control" id="postCode"
-                   placeholder="Podaj kod pocztowy">
-        </div>
 
-        <div class="form-group">
-            <label for="city">Miasto</label>
-            <input th:field="*{city}" type="text" class="form-control" id="city" placeholder="Podaj miasto zamieszkania klienta">
+<div class="container" th:replace="~{fragments/header :: header}">Header</div>
+
+<h3 class="mx-auto col-md-12">Formularz dodawania rodzica</h3>
+
+<div class="container col-md-12 ml-2">
+    <form th:action="@{/admin/addClient}" th:object="${client}" method="post">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="firstName">Imię</label>
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                       placeholder="Podaj imię klienta">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Nazwisko</label>
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                       placeholder="Podaj nazwisko klienta">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email">e-mail</label>
+                <input th:field="*{email}" type="email" class="form-control" id="email"
+                       placeholder="Podaj e-mail klienta">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phone">Telefon</label>
+                <input th:field="*{phone}" type="text" class="form-control" id="phone"
+                       placeholder="Podaj telefon klienta">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="street">Ulica</label>
+                <input th:field="*{street}" type="text" class="form-control" id="street"
+                       placeholder="Podaj ulicę zamieszkania klienta">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="postCode">Kod pocztowy</label>
+                <input th:field="*{postCode}" type="text" class="form-control" id="postCode"
+                       placeholder="Podaj kod pocztowy">
+            </div>
+
+            <div class="form-group col-md-8">
+                <label for="city">Miasto</label>
+                <input th:field="*{city}" type="text" class="form-control" id="city"
+                       placeholder="Podaj miasto zamieszkania klienta">
+            </div>
         </div>
         <!-- <div class="form-group">
              <label for="role">Wybierz rolę użytkownika</label>
@@ -51,11 +66,17 @@
                  </option>
              </select>
          </div>-->
-        <div class="row">
+        <div class="row" style="margin-left: 15px">
             <button type="reset" class="btn btn-primary"><a href="/" style="color: white;">Anuluj</a></button>
             <button type="submit" class="btn btn-primary">Zapisz</button>
         </div>
     </form>
 </div>
+
+<div class="container" th:replace="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
+
+<script src="../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
 </body>
 </html>
