@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.leszekjanczewski.reckoning.model.Child;
+import pl.leszekjanczewski.reckoning.model.*;
 import pl.leszekjanczewski.reckoning.model.Class;
-import pl.leszekjanczewski.reckoning.model.Client;
-import pl.leszekjanczewski.reckoning.model.Role;
-import pl.leszekjanczewski.reckoning.model.User;
 import pl.leszekjanczewski.reckoning.repository.*;
 import pl.leszekjanczewski.reckoning.service.ChildServiceImpl;
+import pl.leszekjanczewski.reckoning.service.ClassServiceImpl;
 import pl.leszekjanczewski.reckoning.service.ClientServiceImpl;
 import pl.leszekjanczewski.reckoning.service.UserServiceImpl;
 
+import java.time.Instant;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,11 +35,19 @@ public class AdminController {
     @Autowired
     private ClientRepo clientRepo;
 
-    @Autowired private ChildServiceImpl childService;
+    @Autowired
+    private ChildServiceImpl childService;
 
-    @Autowired private ChildRepo childRepo;
+    @Autowired
+    private ChildRepo childRepo;
 
-    @Autowired private ClassRepo classRepo;
+    @Autowired
+    private ClassRepo classRepo;
+    @Autowired
+    private ClassServiceImpl classService;
+
+    @Autowired
+    private TypeOfClassRepo typeOfClassRepo;
 
     @GetMapping("/admin/addUser")
     public String addUser(Model model) {
@@ -106,6 +114,7 @@ public class AdminController {
         clientRepo.delete(clientRepo.findByClientId(id));
         return "redirect:/admin/listUser";
     }
+
     /**/
     @GetMapping("/admin/addChild")
     public String addChild(Model model) {
@@ -144,5 +153,38 @@ public class AdminController {
     public String removeChild(@PathVariable Long id) {
         childRepo.delete(childRepo.findByChildId(id));
         return "redirect:/admin/listChildren";
+    }
+
+    @GetMapping("/admin/addClass")
+    public String addClass(Model model) {
+        model.addAttribute("class", new Class());
+        List<Class> classList = classRepo.findAll();
+        model.addAttribute("classes", classList);
+        List<TypeOfClass> typeOfClassList = typeOfClassRepo.findAll();
+        model.addAttribute("typOfClassList", typeOfClassList);
+        return "admin/addClassForm";
+    }
+
+    @PostMapping("/admin/addClass")
+    public String saveAddClass(@ModelAttribute Class classReco) {
+        String segOne = classReco.getDayOfWeek().substring(0, 2).toUpperCase();
+        String segTwo = classReco.getTypeOfClass().getTypeOfClassName().substring(0, 3).toUpperCase();
+        ;
+        String segThree;
+        if (classReco.getTypeOfClass().getTypeOfClassName().contains("Wst")) {
+            segThree = "WST";
+        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("Podst")) {
+            segThree = "PODST";
+        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("zaawa")) {
+            segThree = "ZAAW";
+        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("pocz")) {
+            segThree = "POCZ";
+        } else {
+            segThree = "WYZW";
+        }
+        String[] segFour = classReco.getStartHour().toString().split(":");
+        classReco.setClassName(segOne + "-" + segTwo + "-" + segThree + "-" + segFour[0] + segFour[1]);
+        classService.saveClass(classReco);
+        return "redirect:/";
     }
 }

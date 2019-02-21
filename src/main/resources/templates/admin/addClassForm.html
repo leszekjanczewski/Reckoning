@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link href="../css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
+</head>
+<body>
+
+<div class="container" th:replace="~{fragments/header :: header}">Header</div>
+
+<h3 class="mx-auto col-md-12" style="color: #2b542c">Formularz dodawania grupy/klasy</h3>
+
+<div class="container col-md-12 ml-2">
+    <form th:action="@{/admin/addClass}" th:object="${class}" method="post">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="dayOfWeek">Dzień tygodnia</label>
+                <select class="form-control" name="dayOfWeek" th:field="*{dayOfWeek}" id="dayOfWeek">
+                    <option th:value="'PONIEDZIAŁEK'">Poniedziałek</option>
+                    <option th:value="'WTOREK'">Wtorek</option>
+                    <option th:value="'ŚRODA'">Środa</option>
+                    <option th:value="'CZWARTEK'">Czwartek</option>
+                    <option th:value="'PIĄTEK'">Piątek</option>
+                    <option th:value="'SOBOTA'">Sobota</option>
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="duration">Czas trwania</label>
+                <input th:field="*{duration}" type="number" class="form-control" id="duration"
+                       placeholder="Czas trwania w minutach">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group date col-md-2">
+                <label for="startHour">Godzina rozpoczęcia</label>
+                <input th:field="*{startHour}" type="time" class="form-control" id="startHour"/>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="typeOfClass">Typ zajęć</label>
+                <select class="form-control" name="typeOfClass" id="typeOfClass" th:field="*{typeOfClass}">
+                    <option th:each="type : ${typOfClassList}"
+                            th:text="${type.typeOfClassName}"
+                            th:value="${type.typeOfClassId}">typ klasy
+                    </option>
+                </select>
+            </div>
+
+        </div>
+        <div class="row" style="margin-left: 15px">
+            <button type="reset" class="btn btn-primary"><a href="/" style="color: white;">Anuluj</a></button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+    </form>
+</div>
+
+<div class="container" th:replace="~{fragments/footer :: footer}">&copy; 2017 The Static Templates</div>
+
+<script src="../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

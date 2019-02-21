@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,14 +38,14 @@ public class Class {
     @NotEmpty(message = "Wybierz dzień zajęć")
     private String dayOfWeek;
 
-    @DateTimeFormat(pattern = "hh:mm")
-    @Temporal(TemporalType.TIME)
+//    @DateTimeFormat(pattern = "hh:mm")
+//    @Temporal(TemporalType.TIME)
     @Column(name = "start_hour")
-    @NotEmpty(message = "Podaj godzinę zajęć")
-    private Date startHour;
+//    @NotEmpty(message = "Podaj godzinę zajęć")
+    private LocalTime startHour;
 
     @Column(name = "duration")
-    @NotEmpty(message = "Podaj czas trwania zajęć")
+//    @NotEmpty(message = "Podaj czas trwania zajęć")
     private int duration;
 
     @EqualsAndHashCode.Exclude
@@ -51,17 +53,17 @@ public class Class {
     private Set<Child> children = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(name = "classes_calendars", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "calendar_id"))
     private Set<Calendar> calendars = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(name = "classes_payments", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "payment_id"))
     private Set<Payment> payments = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(name = "classes_installments", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "installment_id"))
     private Set<Installment> installments = new HashSet<>();
 }
