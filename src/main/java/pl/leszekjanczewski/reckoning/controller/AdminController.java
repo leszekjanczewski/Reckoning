@@ -177,7 +177,7 @@ public class AdminController {
             segThree = "PODST";
         } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("zaawa")) {
             segThree = "ZAAW";
-        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("pocz")) {
+        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("pocz") || classReco.getTypeOfClass().getTypeOfClassName().contains("pierwszy")) {
             segThree = "POCZ";
         } else {
             segThree = "WYZW";
