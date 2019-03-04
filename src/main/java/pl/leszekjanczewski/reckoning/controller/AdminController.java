@@ -12,10 +12,7 @@ import pl.leszekjanczewski.reckoning.service.ClassServiceImpl;
 import pl.leszekjanczewski.reckoning.service.ClientServiceImpl;
 import pl.leszekjanczewski.reckoning.service.UserServiceImpl;
 
-import java.time.Instant;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -48,6 +45,9 @@ public class AdminController {
 
     @Autowired
     private TypeOfClassRepo typeOfClassRepo;
+
+    @Autowired
+    private CalendarRepo calendarRepo;
 
     @GetMapping("/admin/addUser")
     public String addUser(Model model) {
@@ -186,5 +186,19 @@ public class AdminController {
         classReco.setClassName(segOne + "-" + segTwo + "-" + segThree + "-" + segFour[0] + segFour[1]);
         classService.saveClass(classReco);
         return "redirect:/";
+    }
+
+    @GetMapping("/admin/addCalendar")
+    public String addCalendar(Model model) {
+        model.addAttribute("calendar", new Calendar());
+        List<Class> classList = classRepo.findAll();
+        model.addAttribute("classes", classList);
+        return "admin/addCalendar";
+    }
+
+    @PostMapping("/admin/addCalendar")
+    public String saveAddCalendar(@ModelAttribute Calendar calendar) {
+        calendarRepo.save(calendar);
+        return "admin/addCalendar";
     }
 }
