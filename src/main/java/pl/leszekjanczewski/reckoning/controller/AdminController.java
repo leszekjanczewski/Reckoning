@@ -40,6 +40,7 @@ public class AdminController {
 
     @Autowired
     private ClassRepo classRepo;
+
     @Autowired
     private ClassServiceImpl classService;
 
@@ -190,7 +191,8 @@ public class AdminController {
 
     @GetMapping("/admin/addCalendar")
     public String addCalendar(Model model) {
-        model.addAttribute("calendar", new Calendar());
+//        Calendar kalendarz = new Calendar();
+//        model.addAttribute("calendarA", kalendarz);
         List<Class> classList = classRepo.findAll();
         model.addAttribute("classes", classList);
         return "admin/addCalendar";

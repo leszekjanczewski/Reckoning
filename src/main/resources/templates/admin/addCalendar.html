@@ -12,7 +12,7 @@
 <h3 class="mx-auto col-md-12" style="color: #2b542c">Formularz dodawania kalendarza</h3>
 
 <div class="container col-md-12 ml-2">
-    <form th:action="@{/admin/addCalendar}" th:object="${calendar}" method="post">
+    <form th:action="@{/admin/addCalendar}" method="post">
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="class">Wybierz grupę</label>
@@ -24,7 +24,7 @@
                 </select>
             </div>
         </div>
-        <div class="row">
+        <<!--div class="row">
             <div class="form-group date col-md-2">
                 <label for="dateCalendar">Wybierz datę</label>
                 <input type="date" class="form-control" id="dateCalendar" th:field="*{calendar}"/>
@@ -33,7 +33,7 @@
                 <label for="buttoAdd">&nbsp;</label>
                 <button type="submit" class="form-control btn btn-primary" id="buttoAdd">Dodaj</button>
             </div>
-        </div>
+        </div>-->
         <div class="row" style="margin-left: 15px">
             <button type="reset" class="btn btn-primary"><a href="/" style="color: white;">Anuluj</a></button>
             <button type="submit" class="btn btn-primary">Zapisz</button>
