@@ -8,7 +8,6 @@ import pl.leszekjanczewski.reckoning.model.User;
 import pl.leszekjanczewski.reckoning.repository.RoleRepo;
 import pl.leszekjanczewski.reckoning.repository.UserRepo;
 
-import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
+//    @Autowired
     public UserServiceImpl(UserRepo userRepo, RoleRepo roleRepo, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;

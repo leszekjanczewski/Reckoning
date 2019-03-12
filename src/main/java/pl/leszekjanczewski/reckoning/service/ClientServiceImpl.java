@@ -11,11 +11,6 @@ public class ClientServiceImpl implements ClientService {
     @Autowired
     ClientRepo clientRepo;
 
-    @Autowired
-    public ClientServiceImpl(ClientRepo clientRepo) {
-        this.clientRepo = clientRepo;
-    }
-
     @Override
     public Client findClientByPhoneOrEmail(String phone, String email) throws NullPointerException {
         try {

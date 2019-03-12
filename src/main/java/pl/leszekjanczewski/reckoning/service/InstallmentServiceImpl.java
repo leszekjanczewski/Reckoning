@@ -12,11 +12,6 @@ public class InstallmentServiceImpl implements InstallmentService {
 
     @Autowired InstallmentRepo installmentRepo;
 
-    @Autowired
-    public InstallmentServiceImpl(InstallmentRepo installmentRepo) {
-        this.installmentRepo = installmentRepo;
-    }
-
     @Override
     public List<Installment> findInstallmentsByClientsClientId(Long id) {
         return installmentRepo.findInstallmentsByClientsClientId(id);

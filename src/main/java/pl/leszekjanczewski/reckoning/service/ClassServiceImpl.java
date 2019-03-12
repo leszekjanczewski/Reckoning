@@ -13,11 +13,6 @@ public class ClassServiceImpl implements ClassService {
     @Autowired
     ClassRepo classRepo;
 
-    @Autowired
-    public ClassServiceImpl(ClassRepo classRepo) {
-        this.classRepo = classRepo;
-    }
-
     @Override
     public Class saveClass(Class classReco) {
         return classRepo.save(classReco);

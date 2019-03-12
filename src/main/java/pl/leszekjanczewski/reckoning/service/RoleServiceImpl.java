@@ -13,11 +13,6 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepo roleRepo;
 
-    @Autowired
-    public RoleServiceImpl(RoleRepo roleRepo) {
-        this.roleRepo = roleRepo;
-    }
-
     @Override
     public Role findRoleByRole(String role) {
         return roleRepo.findByRole(role);
