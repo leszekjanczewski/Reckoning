@@ -193,14 +193,14 @@ public class AdminController {
     public String addCalendar(Model model) {
 //        Calendar kalendarz = new Calendar();
 //        model.addAttribute("calendarA", kalendarz);
-        List<Class> classList = classRepo.findAll();
+        List<Object[]> classList = classRepo.listClassWithName();
         model.addAttribute("classes", classList);
         return "admin/addCalendar";
     }
 
-    @PostMapping("/admin/addCalendar")
-    public String saveAddCalendar(@ModelAttribute Calendar calendar) {
-        calendarRepo.save(calendar);
-        return "admin/addCalendar";
-    }
+//    @PostMapping("/admin/addCalendar")
+//    public String saveAddCalendar(@ModelAttribute Calendar kalendarz) {
+//        calendarRepo.save(kalendarz);
+//        return "admin/addCalendar";
+//    }
 }
