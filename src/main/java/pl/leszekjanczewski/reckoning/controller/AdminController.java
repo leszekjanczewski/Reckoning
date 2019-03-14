@@ -12,6 +12,7 @@ import pl.leszekjanczewski.reckoning.service.ClassServiceImpl;
 import pl.leszekjanczewski.reckoning.service.ClientServiceImpl;
 import pl.leszekjanczewski.reckoning.service.UserServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -195,6 +196,9 @@ public class AdminController {
 //        model.addAttribute("calendarA", kalendarz);
         List<Object[]> classList = classRepo.listClassWithName();
         model.addAttribute("classes", classList);
+        List dateList = new ArrayList();
+        System.out.println(dateList);
+        model.addAttribute("dateList", dateList);
         return "admin/addCalendar";
     }
 
@@ -203,4 +207,11 @@ public class AdminController {
 //        calendarRepo.save(kalendarz);
 //        return "admin/addCalendar";
 //    }
+
+    @PostMapping("/admin/addDateToCalendar")
+    public String addDateToCalendar(@ModelAttribute List<String> dateList, @ModelAttribute String date) {
+        dateList.add(date);
+        System.out.println(dateList);
+        return "redirect:/admin/addCalendar";
+    }
 }
