@@ -1,5 +1,7 @@
 package pl.leszekjanczewski.reckoning.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,38 +20,33 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    @Autowired
     private UserServiceImpl userService;
 
-    @Autowired
     private UserRepo userRepo;
 
-    @Autowired
     private RoleRepo roleRepo;
 
-    @Autowired
     private ClientServiceImpl clientService;
 
-    @Autowired
     private ClientRepo clientRepo;
 
-    @Autowired
     private ChildServiceImpl childService;
 
-    @Autowired
     private ChildRepo childRepo;
 
-    @Autowired
     private ClassRepo classRepo;
 
-    @Autowired
-    private ClassServiceImpl classService;
+    private final ClassServiceImpl classService;
 
-    @Autowired
     private TypeOfClassRepo typeOfClassRepo;
 
-    @Autowired
     private CalendarRepo calendarRepo;
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
+
+    public AdminController(ClassServiceImpl classService) {
+        this.classService = classService;
+    }
 
     @GetMapping("/admin/addUser")
     public String addUser(Model model) {
@@ -171,7 +168,6 @@ public class AdminController {
     public String saveAddClass(@ModelAttribute Class classReco) {
         String segOne = classReco.getDayOfWeek().substring(0, 2).toUpperCase();
         String segTwo = classReco.getTypeOfClass().getTypeOfClassName().substring(0, 3).toUpperCase();
-        ;
         String segThree;
         if (classReco.getTypeOfClass().getTypeOfClassName().contains("Wst")) {
             segThree = "WST";
@@ -197,7 +193,7 @@ public class AdminController {
         List<Object[]> classList = classRepo.listClassWithName();
         model.addAttribute("classes", classList);
         List dateList = new ArrayList();
-        System.out.println(dateList);
+        log.debug("zawartosc: ", dateList);
         model.addAttribute("dateList", dateList);
         return "admin/addCalendar";
     }
@@ -211,7 +207,7 @@ public class AdminController {
     @PostMapping("/admin/addDateToCalendar")
     public String addDateToCalendar(@ModelAttribute List<String> dateList, @ModelAttribute String date) {
         dateList.add(date);
-        System.out.println(dateList);
+        log.debug("zawartosc: ", dateList);
         return "redirect:/admin/addCalendar";
     }
 }
