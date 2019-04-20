@@ -11,15 +11,15 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "types_of_classes")
-public class TypeOfClass {
+@Table(name = "types_of_division")
+public class TypeOfDivision {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "type_id")
-    private Long typeOfClassId;
+    private Long typeOfDivisionId;
 
     @Column(name = "type_name")
     @NotEmpty(message = "Wprowadź typ klasy")
-    private String typeOfClassName;
+    private String typeOfDivisionName;
 }

@@ -201,7 +201,7 @@
                     <td th:text="${child.getGender()}"></td>
                     <td th:text="${child.getClient().firstName} + ' ' + ${child.getClient().lastName}"></td>
                     <td>
-                        <ul th:each="class : ${child.getClasses()}">
+                        <ul th:each="class : ${child.getDivisions()}">
                             <li th:text="${class.getClassName()}">
                             </li>
                         </ul>

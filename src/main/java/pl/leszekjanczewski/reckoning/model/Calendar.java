@@ -26,5 +26,5 @@ public class Calendar {
     private Date dateOfActivites;
 
     @ManyToMany(mappedBy = "calendars")
-    private Set<Class> classes = new HashSet<>();
+    private Set<Division> divisions = new HashSet<>();
 }

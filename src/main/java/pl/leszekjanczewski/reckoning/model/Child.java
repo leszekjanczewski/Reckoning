@@ -45,8 +45,8 @@ public class Child {
 
     @EqualsAndHashCode.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "child_class", joinColumns = {@JoinColumn(name = "child_id")}, inverseJoinColumns = {@JoinColumn(name = "class_id")})
-    private Set<Class> classes = new HashSet<>();
+    @JoinTable(name = "child_division", joinColumns = {@JoinColumn(name = "child_id")}, inverseJoinColumns = {@JoinColumn(name = "division_id")})
+    private Set<Division> divisions = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
     @ManyToMany

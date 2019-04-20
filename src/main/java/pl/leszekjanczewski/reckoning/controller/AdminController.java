@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.leszekjanczewski.reckoning.model.*;
-import pl.leszekjanczewski.reckoning.model.Class;
+import pl.leszekjanczewski.reckoning.model.Division;
 import pl.leszekjanczewski.reckoning.repository.*;
 import pl.leszekjanczewski.reckoning.service.ChildServiceImpl;
-import pl.leszekjanczewski.reckoning.service.ClassServiceImpl;
+import pl.leszekjanczewski.reckoning.service.DivisionServiceImpl;
 import pl.leszekjanczewski.reckoning.service.ClientServiceImpl;
 import pl.leszekjanczewski.reckoning.service.UserServiceImpl;
 
@@ -20,31 +20,42 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    private UserServiceImpl userService;
+    @Autowired
+    UserServiceImpl userService;
 
+    @Autowired
     private UserRepo userRepo;
 
+    @Autowired
     private RoleRepo roleRepo;
 
+    @Autowired
     private ClientServiceImpl clientService;
 
+    @Autowired
     private ClientRepo clientRepo;
 
+    @Autowired
     private ChildServiceImpl childService;
 
+    @Autowired
     private ChildRepo childRepo;
 
-    private ClassRepo classRepo;
+    @Autowired
+    private DivisionRepo divisionRepo;
 
-    private final ClassServiceImpl classService;
+    @Autowired
+    private final DivisionServiceImpl classService;
 
-    private TypeOfClassRepo typeOfClassRepo;
+    @Autowired
+    private TypeOfDivisionRepo typeOfDivisionRepo;
 
+    @Autowired
     private CalendarRepo calendarRepo;
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    public AdminController(ClassServiceImpl classService) {
+    public AdminController(DivisionServiceImpl classService) {
         this.classService = classService;
     }
 
@@ -120,8 +131,8 @@ public class AdminController {
         model.addAttribute("child", new Child());
         List<Client> clientList = clientRepo.findAll();
         model.addAttribute("clients", clientList);
-        List<Class> classList = classRepo.findAll();
-        model.addAttribute("classes", classList);
+        List<Division> divisionList = divisionRepo.findAll();
+        model.addAttribute("classes", divisionList);
         return "admin/addChildForm";
     }
 
@@ -136,8 +147,8 @@ public class AdminController {
     public String listChildren(Model model) {
         List<Child> children = childRepo.findAll();
         model.addAttribute("children", children);
-        List<Class> classList = classRepo.findAll();
-        model.addAttribute("classes", classList);
+        List<Division> divisionList = divisionRepo.findAll();
+        model.addAttribute("classes", divisionList);
         return "index";
     }
 
@@ -156,33 +167,33 @@ public class AdminController {
 
     @GetMapping("/admin/addClass")
     public String addClass(Model model) {
-        model.addAttribute("class", new Class());
-        List<Class> classList = classRepo.findAll();
-        model.addAttribute("classes", classList);
-        List<TypeOfClass> typeOfClassList = typeOfClassRepo.findAll();
-        model.addAttribute("typOfClassList", typeOfClassList);
-        return "admin/addClassForm";
+        model.addAttribute("class", new Division());
+        List<Division> divisionList = divisionRepo.findAll();
+        model.addAttribute("classes", divisionList);
+        List<TypeOfDivision> typeOfDivisionList = typeOfDivisionRepo.findAll();
+        model.addAttribute("typOfClassList", typeOfDivisionList);
+        return "addDivisionForm";
     }
 
     @PostMapping("/admin/addClass")
-    public String saveAddClass(@ModelAttribute Class classReco) {
-        String segOne = classReco.getDayOfWeek().substring(0, 2).toUpperCase();
-        String segTwo = classReco.getTypeOfClass().getTypeOfClassName().substring(0, 3).toUpperCase();
+    public String saveAddClass(@ModelAttribute Division divisionReco) {
+        String segOne = divisionReco.getDayOfWeek().substring(0, 2).toUpperCase();
+        String segTwo = divisionReco.getTypeOfDivision().getTypeOfDivisionName().substring(0, 3).toUpperCase();
         String segThree;
-        if (classReco.getTypeOfClass().getTypeOfClassName().contains("Wst")) {
+        if (divisionReco.getTypeOfDivision().getTypeOfDivisionName().contains("Wst")) {
             segThree = "WST";
-        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("Podst")) {
+        } else if (divisionReco.getTypeOfDivision().getTypeOfDivisionName().contains("Podst")) {
             segThree = "PODST";
-        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("zaawa")) {
+        } else if (divisionReco.getTypeOfDivision().getTypeOfDivisionName().contains("zaawa")) {
             segThree = "ZAAW";
-        } else if (classReco.getTypeOfClass().getTypeOfClassName().contains("pocz") || classReco.getTypeOfClass().getTypeOfClassName().contains("pierwszy")) {
+        } else if (divisionReco.getTypeOfDivision().getTypeOfDivisionName().contains("pocz") || divisionReco.getTypeOfDivision().getTypeOfDivisionName().contains("pierwszy")) {
             segThree = "POCZ";
         } else {
             segThree = "WYZW";
         }
-        String[] segFour = classReco.getStartHour().toString().split(":");
-        classReco.setClassName(segOne + "-" + segTwo + "-" + segThree + "-" + segFour[0] + segFour[1]);
-        classService.saveClass(classReco);
+        String[] segFour = divisionReco.getStartHour().toString().split(":");
+        divisionReco.setDivisionName(segOne + "-" + segTwo + "-" + segThree + "-" + segFour[0] + segFour[1]);
+        classService.saveClass(divisionReco);
         return "redirect:/";
     }
 
@@ -190,7 +201,7 @@ public class AdminController {
     public String addCalendar(Model model) {
 //        Calendar kalendarz = new Calendar();
 //        model.addAttribute("calendarA", kalendarz);
-        List<Object[]> classList = classRepo.listClassWithName();
+        List<Object[]> classList = divisionRepo.listClassWithName();
         model.addAttribute("classes", classList);
         List dateList = new ArrayList();
         log.debug("zawartosc: ", dateList);

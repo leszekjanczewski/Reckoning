@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import pl.leszekjanczewski.reckoning.model.Class;
-import pl.leszekjanczewski.reckoning.repository.ClassRepo;
+import pl.leszekjanczewski.reckoning.model.Division;
+import pl.leszekjanczewski.reckoning.repository.DivisionRepo;
 
 import java.util.List;
 
@@ -14,18 +13,18 @@ import java.util.List;
 public class UserControler {
 
     @Autowired
-    ClassRepo classRepo;
+    DivisionRepo divisionRepo;
 
     @GetMapping("/user/listClass")
     public String listClass(Model model) {
-        List<Class> classList = classRepo.findAll();
-        model.addAttribute("classes", classList);
+        List<Division> divisionList = divisionRepo.findAll();
+        model.addAttribute("classes", divisionList);
         return "index";
     }
 
-    /*@ModelAttribute("classes")
-    public List<Class> classList() {
-        List<Class> classList = classRepo.findAll();
+    /*@ModelAttribute("divisions")
+    public List<Division> classList() {
+        List<Division> classList = classRepo.findAll();
         return classList;
     }*/
 }

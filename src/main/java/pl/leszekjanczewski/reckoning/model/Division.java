@@ -4,14 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,20 +15,20 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "classes")
-public class Class {
+@Table(name = "division")
+public class Division {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_id")
-    private Long classId;
+    @Column(name = "division_id")
+    private Long divisionId;
 
-    @Column(name = "class_name")
-    private String className;
+    @Column(name = "division_name")
+    private String divisionName;
 
    @ManyToOne
    @JoinColumn(name = "type_id")
-    private TypeOfClass typeOfClass;
+    private TypeOfDivision typeOfDivision;
 
     @Column(name = "day_of_week")
     @NotEmpty(message = "Wybierz dzień zajęć")
@@ -49,21 +45,21 @@ public class Class {
     private int duration;
 
     @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "classes")
+    @ManyToMany(mappedBy = "divisions")
     private Set<Child> children = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
     @ManyToMany
-    @JoinTable(name = "classes_calendars", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "calendar_id"))
+    @JoinTable(name = "divisions_calendars", joinColumns = @JoinColumn(name = "division_id"), inverseJoinColumns = @JoinColumn(name = "calendar_id"))
     private Set<Calendar> calendars = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
     @ManyToMany
-    @JoinTable(name = "classes_payments", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "payment_id"))
+    @JoinTable(name = "divisions_payments", joinColumns = @JoinColumn(name = "division_id"), inverseJoinColumns = @JoinColumn(name = "payment_id"))
     private Set<Payment> payments = new HashSet<>();
 
     @EqualsAndHashCode.Exclude
     @ManyToMany
-    @JoinTable(name = "classes_installments", joinColumns = @JoinColumn(name = "class_id"), inverseJoinColumns = @JoinColumn(name = "installment_id"))
+    @JoinTable(name = "divisions_installments", joinColumns = @JoinColumn(name = "division_id"), inverseJoinColumns = @JoinColumn(name = "installment_id"))
     private Set<Installment> installments = new HashSet<>();
 }

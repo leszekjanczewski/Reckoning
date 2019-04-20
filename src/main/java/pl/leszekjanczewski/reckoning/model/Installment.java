@@ -39,7 +39,7 @@ public class Installment {
 
     @ManyToMany(mappedBy = "installments")
     @EqualsAndHashCode.Exclude
-    private Set<Class> classes = new HashSet<>();
+    private Set<Division> divisions = new HashSet<>();
 
     @ManyToMany(mappedBy = "installments")
     @EqualsAndHashCode.Exclude

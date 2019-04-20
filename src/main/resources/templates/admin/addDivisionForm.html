@@ -38,7 +38,7 @@
             </div>
             <div class="form-group col-md-8">
                 <label for="typeOfClass">Typ zajęć</label>
-                <select class="form-control" name="typeOfClass" id="typeOfClass" th:field="*{typeOfClass}">
+                <select class="form-control" name="typeOfClass" id="typeOfClass" th:field="*{typeOfDivision}">
                     <option th:each="type : ${typOfClassList}"
                             th:text="${type.typeOfClassName}"
                             th:value="${type.typeOfClassId}">typ klasy

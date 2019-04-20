@@ -39,7 +39,7 @@ public class Payment {
 
     @ManyToMany(mappedBy = "payments")
     @EqualsAndHashCode.Exclude
-    private Set<Class> classes = new HashSet<>();
+    private Set<Division> divisions = new HashSet<>();
 
     @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Installment installment;
